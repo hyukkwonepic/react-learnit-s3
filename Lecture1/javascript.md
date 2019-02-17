@@ -278,6 +278,7 @@ console.log(rest); // [ 3, 4, 5, 6 ]
 ## class
 
 ### class 작성하기
+
 ```
 class Animal {
   constructor(name, type) {
