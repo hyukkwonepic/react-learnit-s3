@@ -5,23 +5,8 @@ import PropTypes from 'prop-types';
 const GalleryCarousel = ({ images, onSelect }) => {
   return (
     <Wrapper>
-      {images.map((image) => {
-        const { type, url } = image;
-        return (
-          <Box
-            key={type}
-            onClick={() => onSelect(type)}
-          >
-            <img src={url} alt={type} />
-          </Box>
-        )
-      })}
     </Wrapper>
   );
-}
-
-GalleryCarousel.propTypes = {
-  images: PropTypes.array,
 }
 
 const Wrapper = styled.div`

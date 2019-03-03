@@ -2,43 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import GalleryCarousel from '../GalleryCarousel';
-
 export default class Gallery extends React.Component {
-  state = {
-    selectedImageType: 'front_default',
-  }
-
-  handleSelectImage = (type) => {
-    this.setState({ selectedImageType: type });
-  }
 
   render() {
-    const { sprites } = this.props;
-    const { selectedImageType } = this.state;
-
-    let selectedImageUrl = null;
-    let carouselImages = [];
-
-    if (sprites) {
-      selectedImageUrl = sprites[selectedImageType];
-      carouselImages = Object.keys(sprites).filter((key) => {
-        return sprites[key] !== null
-      }).map((key) => {
-        return {
-          type: key,
-          url: sprites[key]
-        }
-      });
-    }
-
     return (
       <Wrapper>
-        <Main image={selectedImageUrl} />
-        <GalleryCarousel
-          images={carouselImages}
-          onSelect={this.handleSelectImage}
-        />
       </Wrapper>
     );
   }

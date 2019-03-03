@@ -2,37 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import Gallery from '../Gallery';
-
 import logo from '../../assets/pokedex-logo.svg';
 
 export default class Main extends React.Component {
   render() {
-    const { selectedPokemonData } = this.props;
     return (
       <Wrapper>
         <Logo>
           <img src={logo} alt="logo" width="70px" />
         </Logo>
-        <Gallery sprites={ selectedPokemonData ? selectedPokemonData.sprites : null}/>
         <Info>
-          {
-            selectedPokemonData ? (
-              <div>
-                <p>이름: {selectedPokemonData.species.name}</p>
-                <p>신장: {selectedPokemonData.height}</p>
-                <p>무게: {selectedPokemonData.weight}</p>
-              </div>
-            ): null
-          }
         </Info>
       </Wrapper>
     );
   }
-}
-
-Main.propTypes = {
-  selectedPokemonData: PropTypes.object
 }
 
 const Wrapper = styled.div`

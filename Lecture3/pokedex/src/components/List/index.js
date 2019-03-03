@@ -4,19 +4,8 @@ import PropTypes from 'prop-types';
 
 export default class List extends React.Component {
   render() {
-    const { pokemons, selectedPokemonUrl, onSelect } = this.props;
     return (
       <Wrapper>
-        {pokemons.map((pokemon) => {
-          const { name, url } = pokemon;
-          return (
-            <Item
-              key={url}
-              active={selectedPokemonUrl === url}
-              onClick={() => onSelect(url)}
-            >{name}</Item>
-          )
-        })}
       </Wrapper>
     )
   }
