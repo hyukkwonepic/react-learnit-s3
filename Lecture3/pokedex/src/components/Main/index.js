@@ -1,8 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
-
-import logo from '../../assets/pokedex-logo.svg';
 
 export default class Main extends React.Component {
   render() {

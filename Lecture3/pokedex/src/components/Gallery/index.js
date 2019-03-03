@@ -1,19 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 export default class Gallery extends React.Component {
-
   render() {
     return (
       <Wrapper>
       </Wrapper>
     );
   }
-}
-
-Gallery.propTypes = {
-  sprites: PropTypes.object
 }
 
 const Wrapper = styled.div`

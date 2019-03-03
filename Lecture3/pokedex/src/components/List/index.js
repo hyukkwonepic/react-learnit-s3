@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 export default class List extends React.Component {
   render() {
@@ -9,10 +8,6 @@ export default class List extends React.Component {
       </Wrapper>
     )
   }
-}
-
-List.propTypes = {
-  pokemons: PropTypes.array,
 }
 
 const Wrapper = styled.div`
