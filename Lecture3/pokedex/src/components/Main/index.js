@@ -8,11 +8,6 @@ export default class Main extends React.Component {
   render() {
     return (
       <Wrapper>
-        <Logo>
-          <img src={logo} alt="logo" width="70px" />
-        </Logo>
-        <Info>
-        </Info>
       </Wrapper>
     );
   }
