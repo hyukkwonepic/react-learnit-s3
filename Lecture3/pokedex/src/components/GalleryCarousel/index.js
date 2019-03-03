@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const GalleryCarousel = ({ images, onSelect }) => {
+const GalleryCarousel = () => {
   return (
     <Wrapper>
     </Wrapper>
