@@ -28,7 +28,6 @@ class CommentCreate extends React.Component {
 
       const newCommentRef = db.collection('comments').doc();
       await newCommentRef.set({
-        id: newCommentRef.id,
         author,
         content,
       });
