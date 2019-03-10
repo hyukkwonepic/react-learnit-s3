@@ -25,3 +25,10 @@
 - API 데이터 렌더링하기
 - prop-types 로 데이터 타입 정의하기
 - 실습 프로젝트: 포켓몬 API를 활용한 포켓몬도감 만들기
+
+## [4회차 - 애플리케이션 제작하기](./Lecture4/README.md)
+
+- JavaScript 비동기 통신: promise, async/await
+- react-router 를 활용한 라우팅
+- firebase/firestore를 활용하여 db 연동하기
+- 실습 프로젝트 : 고양이 집사들을 위한 "냥포럼" 만들기
