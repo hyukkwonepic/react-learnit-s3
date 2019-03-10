@@ -6,50 +6,7 @@ import Header from '../../components/Header';
 import Button from '../../components/Button';
 
 class CommentCreate extends React.Component {
-
-  state = {
-    author: '',
-    content: ''
-  }
-
-  handleChange = (type) => (e) => {
-    this.setState({
-      [type]: e.target.value
-    });
-  }
-
-  handleSubmit = async (e) => {
-    e.preventDefault();
-    const confirm = window.confirm('정말로 등록하시겠습니까?');
-  
-    if (confirm) {
-      const { id } = this.props.match.params;
-      const { author, content } = this.state;
-
-      const newCommentRef = db.collection('comments').doc();
-      await newCommentRef.set({
-        id: newCommentRef.id,
-        author,
-        content,
-      });
-
-
-      const postSnapshot = await db.collection('posts').doc(id).get();
-      const commentsByPost = postSnapshot.data().comments;
-      await db.collection('posts').doc(id).update({
-        comments: [
-          ...commentsByPost,
-          newCommentRef
-        ]
-      });
-
-      alert('성공적으로 등록되었습니다');
-      this.props.history.goBack();
-    }
-  }
-
   render() {
-    const { author, content } = this.state;
     return (
       <Wrapper>
         <Header />
@@ -57,13 +14,13 @@ class CommentCreate extends React.Component {
           <Form>
             <Nickname>
               <Label>닉네임</Label>
-              <Input value={author} onChange={this.handleChange('author')} />
+              <Input />
             </Nickname>
             <Content>
               <Label>내용</Label>
-              <Textarea value={content} onChange={this.handleChange('content')} />
+              <Textarea />
             </Content>
-            <Button onClick={this.handleSubmit}>댓글 쓰기</Button>
+            <Button>댓글 쓰기</Button>
           </Form>
         </Contents>
       </Wrapper>

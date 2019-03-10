@@ -7,40 +7,7 @@ import Header from '../../components/Header';
 import Button from '../../components/Button';
 
 class PostCreate extends React.Component {
-
-  state = {
-    author: '',
-    title: '',
-    content: ''
-  }
-
-  handleChange = (type) => (e) => {
-    this.setState({
-      [type]: e.target.value
-    });
-  }
-
-  handleSubmit = async (e) => {
-    e.preventDefault();
-    const confirm = window.confirm('정말로 등록하시겠습니까?');
-
-    if (confirm) {
-      const { author, title, content } = this.state;
-
-      await db.collection('posts').doc().set({
-        author,
-        title,
-        content,
-        comments: []
-      });
-
-      alert('성공적으로 등록되었습니다');
-      this.props.history.goBack();
-    }
-  }
-
   render() {
-    const { author, title, content } = this.state;
     return (
       <Wrapper>
         <Header />
@@ -48,17 +15,17 @@ class PostCreate extends React.Component {
           <Form>
             <Nickname>
               <Label>닉네임</Label>
-              <Input value={author} onChange={this.handleChange('author')} />
+              <Input />
             </Nickname>
             <Title>
               <Label>제목</Label>
-              <Input value={title} onChange={this.handleChange('title')} />
+              <Input />
             </Title>
             <Content>
               <Label>내용</Label>
-              <Textarea value={content} onChange={this.handleChange('content')} />
+              <Textarea />
             </Content>
-            <Button onClick={this.handleSubmit}>글 쓰기</Button>
+            <Button>글 쓰기</Button>
           </Form>
         </Contents>
       </Wrapper>

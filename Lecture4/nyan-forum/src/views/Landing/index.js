@@ -6,16 +6,12 @@ import Button from '../../components/Button';
 import logo from '../../assets/cat.svg';
 
 export default class Landing extends React.Component {
-  handleEnter = () => {
-    this.props.history.push('/posts');
-  }
-
   render() {
     return (
       <Wrapper>
         <img src={logo} alt="logo" />
         <div>냥포럼</div>
-        <Button onClick={this.handleEnter}>입장하기</Button>
+        <Button>입장하기</Button>
       </Wrapper>
     );
   }
