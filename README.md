@@ -31,4 +31,10 @@
 - JavaScript 비동기 통신: promise, async/await
 - react-router 를 활용한 라우팅
 - firebase/firestore를 활용하여 db 연동하기
-- 실습 프로젝트 : 고양이 집사들을 위한 "냥포럼" 만들기
+- 실습 프로젝트: 고양이 집사들을 위한 "냥포럼" 만들기
+
+## [5회차 - 리덕스 활용하기](./Lecture5/README.md)
+
+- 리덕스 소개
+- Flux 아키텍쳐
+- 실습 프로젝트: 리덕스를 활용하여 "냥포럼" 리팩토링하기
