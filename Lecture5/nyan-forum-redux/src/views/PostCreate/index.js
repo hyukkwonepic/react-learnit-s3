@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
-
-import { createPost } from './actions';
+import { db } from '../../firebase';
 
 
 import Header from '../../components/Header';
@@ -29,11 +27,12 @@ class PostCreate extends React.Component {
     if (confirm) {
       const { author, title, content } = this.state;
 
-      await this.props.dispatch(createPost({
+      await db.collection('posts').doc().set({
         author,
         title,
         content,
-      }))
+        comments: []
+      });
 
       alert('성공적으로 등록되었습니다');
       this.props.history.goBack();
@@ -133,4 +132,4 @@ const Textarea = styled.textarea`
   padding: 1rem;
 `;
 
-export default connect()(PostCreate);
+export default PostCreate;

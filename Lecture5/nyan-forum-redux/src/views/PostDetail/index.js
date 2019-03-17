@@ -1,35 +1,59 @@
 import React from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
+import { db } from '../../firebase';
 
 import PostItem from '../../components/PostItem';
 import Comments from '../../components/Comments';
 import Header from '../../components/Header';
 
-import { fetchPostDetail } from './actions';
-
 class PostDetail extends React.Component {
-  componentDidMount() {
-    const { dispatch, match } = this.props;
-    dispatch(fetchPostDetail(match.params.id));
+
+  state = {
+    post: null,
+    comments: []
+  }
+
+  async componentDidMount() {
+    const { id } = this.props.match.params;
+
+    try {
+      const postSnapshot = await db.collection('posts').doc(id).get();
+      const post = postSnapshot.data();
+
+      const commentsSnapshot = await Promise.all(post.comments.map(ref => ref.get()));
+      const comments = commentsSnapshot.map((snapshot) => {
+        return {
+          id: snapshot.id,
+          ...snapshot.data()
+        }
+      });
+
+      this.setState({
+        post,
+        comments,
+      });
+
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   render() {
-    const { post, comments, isLoading } = this.props;
+    const { post, comments } = this.state;
 
-    return (
-      <Wrapper>
-        <Header />
-        <Contents>
-          {!isLoading && post ? (
-            <>
-              <PostItem isDetail post={post} />
-              <Comments comments={comments} />
-            </>
-          ) : <h1>로딩 중...</h1>}
-        </Contents>
-      </Wrapper>
-    );
+    if (post) {
+      return (
+        <Wrapper>
+          <Header />
+          <Contents>
+            <PostItem isDetail post={post} />
+            <Comments comments={comments} />
+          </Contents>
+
+        </Wrapper>
+      );
+    }
+    return null;
   }
 }
 
@@ -42,8 +66,4 @@ const Contents = styled.div`
   flex-direction: column;
 `;
 
-const mapStateToProps = (state) => {
-  return state.postDetail;
-}
-
-export default connect(mapStateToProps)(PostDetail);
+export default PostDetail;

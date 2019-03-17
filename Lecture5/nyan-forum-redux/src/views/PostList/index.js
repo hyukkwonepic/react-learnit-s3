@@ -1,30 +1,47 @@
 import React from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
+import { db } from '../../firebase';
 
 import Header from '../../components/Header';
 import PostItem from '../../components/PostItem';
 
-import { fetchPostList } from './actions';
-
 class PostList extends React.Component {
 
-  componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(fetchPostList());
+  state = {
+    posts: []
+  }
+
+  async componentDidMount() {
+    try {
+      const postsSnapshot = await db.collection('posts').get();
+
+      const posts = postsSnapshot.docs.map((snapshot) => {
+        const data = snapshot.data();
+        return {
+          ...data,
+          id: snapshot.id,
+        }
+      });
+
+      if (posts && posts.length !== 0) {
+        this.setState({
+          posts
+        });
+      }
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   render() {
-    const { posts, isLoading } = this.props;
+    const { posts } = this.state;
     return (
       <Wrapper>
         <Header />
         <Contents>
-          {
-            isLoading ? <h1>로딩 중...</h1> : posts.map((post) => {
-              return <PostItem key={post.id} post={post} />
-            })
-          }
+          {posts.map((post) => {
+            return <PostItem key={post.id} post={post} />
+          })}
         </Contents>
       </Wrapper>
     )
@@ -40,9 +57,4 @@ const Contents = styled.div`
   flex-direction: column;
 `;
 
-const mapStateToProps = (state) => {
-  return state.postList;
-}
-
-
-export default connect(mapStateToProps)(PostList);
+export default PostList;

@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
+import { db } from '../../firebase';
 
 import Header from '../../components/Header';
 import Button from '../../components/Button';
-
-import { createComment } from './actions';
 
 class CommentCreate extends React.Component {
 
@@ -28,11 +26,21 @@ class CommentCreate extends React.Component {
       const { id } = this.props.match.params;
       const { author, content } = this.state;
 
-      await this.props.dispatch(createComment({
-        id,
+      const newCommentRef = db.collection('comments').doc();
+      await newCommentRef.set({
         author,
-        content
-      }));
+        content,
+      });
+
+
+      const postSnapshot = await db.collection('posts').doc(id).get();
+      const commentsByPost = postSnapshot.data().comments;
+      await db.collection('posts').doc(id).update({
+        comments: [
+          ...commentsByPost,
+          newCommentRef
+        ]
+      });
 
       alert('성공적으로 등록되었습니다');
       this.props.history.goBack();
@@ -124,4 +132,4 @@ const Textarea = styled.textarea`
   padding: 1rem;
 `;
 
-export default connect()(CommentCreate);
+export default CommentCreate;
