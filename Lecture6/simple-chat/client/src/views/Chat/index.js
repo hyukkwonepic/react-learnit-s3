@@ -2,6 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 
 class Chat extends React.Component {
+
+  // // for subscribeToMore
+  // handleSubscribeToMore = (subscribeToMore) => () => {
+  //   subscribeToMore({
+  //     document: queries.MESSAGE_CREATED,
+  //     updateQuery: (prev, { subscriptionData }) => {
+  //       return {
+  //         messages: [
+  //           subscriptionData.data.message,
+  //           ...prev.messages,
+  //         ]
+  //       }
+  //     }
+  //   });
+  // }
+
   render() {
     return (
       <Wrapper>
