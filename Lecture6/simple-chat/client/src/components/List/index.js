@@ -12,11 +12,11 @@ class List extends React.Component {
     return (
       <div>
         {messages.map((item) => {
-          const { id, nickname, message } = item;
+          const { id, author, message } = item;
             return (
-              <Message id={`message-${id}`} key={id}>
+              <Message key={id}>
                 <span>
-                  <strong>{nickname}</strong>
+                  <strong>{author}</strong>
                   {message}
                 </span>
               </Message>
