@@ -5,7 +5,6 @@ import { ApolloProvider } from 'react-apollo';
 import GlobalStyle from './globalStyle';
 import client from './apolloClient';
 
-
 import App from './App';
 
 ReactDOM.render(

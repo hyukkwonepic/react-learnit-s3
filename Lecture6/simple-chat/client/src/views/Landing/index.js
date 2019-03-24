@@ -2,15 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 class Landing extends React.Component {
-  handleButtonClick = () => {
-    this.props.history.push('/chat');
-  }
-
   render() {
     return (
       <Wrapper>
         <Title>Simple Chat</Title>
-        <Button onClick={this.handleButtonClick}>입장하기</Button>
+        <Button>입장하기</Button>
       </Wrapper>
     );
   }
