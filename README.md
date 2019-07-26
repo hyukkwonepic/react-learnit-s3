@@ -39,7 +39,7 @@
 - Flux 아키텍쳐
 - 실습 프로젝트: 리덕스를 활용하여 "냥포럼" 리팩토링하기
 
-# [6회차 - 나만의 애플리케이션 만들기](./Lecture6/README.md)
+## [6회차 - 나만의 애플리케이션 만들기](./Lecture6/README.md)
 
 - graphql 소개
 - graphql-yoga를 활용한 서버 프로그래밍
